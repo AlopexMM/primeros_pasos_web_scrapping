@@ -92,3 +92,23 @@ json_object = json.dumps(json_data, indent=4)
 
 with open("export.json", "w") as json_file:
     json_file.write(json_object)
+
+from openpyxl import Workbook
+import openpyxl
+
+
+wb = Workbook()
+
+ws = wb.active
+
+for line_data in table_data:
+    # En este caso todo se agrega como texto
+    # ws.append(line_data)
+    # Sabiendo los datos que se encuentran en la tabla podemos guardar los datos con el formato correcto
+    if line_data[0] == "Fecha":
+        ws.append(line_data)
+    else:
+        ws.append([ line_data[0], float(line_data[1]), float(line_data[2]) ])
+
+
+wb.save("export.xlsx")
