@@ -19,9 +19,8 @@ for line in soup.find_all('tr'):
     if len(data) != 0:
         table_data.append([data.get_text() for data in data])
 
-#print(table_data)
-
 # Escribirlo en un archivo de texto
+
 with open("export.txt", "w") as txt_file:
     # Formato en un string
     #|| Fecha      | Venta  | Compra ||
@@ -54,6 +53,7 @@ with open("export.txt", "w") as txt_file:
     txt_file.write(table_data_to_print)
 
 # Escribir en un archivo csv
+
 with open("export.csv", "w") as csv_file:
     # Formato en un string
     table_data_to_print = ""
@@ -64,8 +64,6 @@ with open("export.csv", "w") as csv_file:
             else:
                 table_data_to_print += f"{line[i]},"
     csv_file.write(table_data_to_print)
-
-# Escribir en un archivo excel
 
 # Escribir en un archivo json
 import json
@@ -97,13 +95,13 @@ from openpyxl import Workbook
 import openpyxl
 
 
+# Escribimos en un excel
+
 wb = Workbook()
 
 ws = wb.active
 
 for line_data in table_data:
-    # En este caso todo se agrega como texto
-    # ws.append(line_data)
     # Sabiendo los datos que se encuentran en la tabla podemos guardar los datos con el formato correcto
     if line_data[0] == "Fecha":
         ws.append(line_data)
